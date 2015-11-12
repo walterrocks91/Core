@@ -24,6 +24,7 @@ public class CommandHandler implements Listener{
                 if(!command.perm().trim().equals("")){
                     if(!e.getPlayer().hasPermission(command.perm())){
                         e.getPlayer().sendMessage(command.no_perm());
+                        e.setCancelled(true);
                         return;
                     }
                 }
