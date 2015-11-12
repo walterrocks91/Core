@@ -6,4 +6,12 @@ public class Txt {
         return str.replaceAll("&", "§");
     }
 
+    public static String concat(String[] arr, int start){
+        String str = "";
+        for(int i = start; i < arr.length; i++){
+            str += arr[i] + " ";
+        }
+        return str.trim();
+    }
+
 }

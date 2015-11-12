@@ -17,7 +17,7 @@ public class CommandHandler implements Listener{
     public void onCommand(PlayerCommandPreprocessEvent e){
         String msg = e.getMessage().replaceFirst("/", "");
         String cmd = (msg.contains(" ") ? msg.split(" ")[0] : msg);
-        String[] args = (msg.contains(" ") ? (msg.split(" ")[1].contains(" ") ? msg.split(" ")[1].split(" ") : new String[]{ msg.split(" ")[1] }) : new String[0]);
+        String[] args = (msg.contains(" ") ? msg.replaceFirst(cmd + " ", "").split(" ") : new String[0]);
         for(Method m : cmds){
             Command command = m.getAnnotation(Command.class);
             if(command.name().equalsIgnoreCase(cmd)){
