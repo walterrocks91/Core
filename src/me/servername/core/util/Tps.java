@@ -10,13 +10,13 @@ public class Tps implements Runnable{
     }
 
     public static double getTPS(int ticks) {
-        if (TICK_COUNT< ticks) {
+        if (TICK_COUNT<ticks) {
             return 20.0D;
         }
         int target = (TICK_COUNT- 1 - ticks) % TICKS.length;
         long elapsed = System.currentTimeMillis() - TICKS[target];
 
-        return ticks / (elapsed / 1000.0D);
+        return (ticks / (elapsed / 1000.0D) > 20 ? 20 : ticks / (elapsed / 1000.0D));
     }
 
     public static double getLag(){
