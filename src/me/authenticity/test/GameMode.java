@@ -7,7 +7,7 @@ public class GameMode {
 
     @Command(name="gm", perm="authenticity.gamemode")
     public void gm(Player p, String[] args){
-        p.sendMessage("me/authenticity/test");
+        p.sendMessage("Test");
     }
 
 }
