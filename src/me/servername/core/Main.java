@@ -1,9 +1,9 @@
-package me.authenticity.core;
+package me.servername.core;
 
-import me.authenticity.core.command.CommandHandler;
-import me.authenticity.core.util.Tps;
+import me.servername.core.command.CommandHandler;
+import me.servername.core.util.Tps;
 import org.bukkit.plugin.java.JavaPlugin;
-import me.authenticity.test.GameMode;
+import me.servername.test.GameMode;
 
 public class Main extends JavaPlugin{
 

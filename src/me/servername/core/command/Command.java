@@ -1,4 +1,4 @@
-package me.authenticity.core.command;
+package me.servername.core.command;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

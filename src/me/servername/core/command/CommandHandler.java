@@ -1,4 +1,4 @@
-package me.authenticity.core.command;
+package me.servername.core.command;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

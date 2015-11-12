@@ -1,4 +1,4 @@
-package me.authenticity.core.util;
+package me.servername.core.util;
 
 public class Tps implements Runnable{
 
