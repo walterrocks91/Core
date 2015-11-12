@@ -1,5 +1,6 @@
 package me.servername.core.command;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -14,7 +15,7 @@ public class CommandHandler implements Listener{
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e){
-        String msg = e.getMessage();
+        String msg = e.getMessage().replaceFirst("/", "");
         String cmd = (msg.contains(" ") ? msg.split(" ")[0] : msg);
         String[] args = (msg.contains(" ") ? (msg.split(" ")[1].contains(" ") ? msg.split(" ")[1].split(" ") : new String[]{ msg.split(" ")[1] }) : new String[0]);
         for(Method m : cmds){
@@ -27,14 +28,19 @@ public class CommandHandler implements Listener{
                     }
                 }
                 try{
-                    boolean access = m.isAccessible();
-                    if(!access) m.setAccessible(true);
-                    m.invoke(m.getDeclaringClass().newInstance(), e.getPlayer(), args);
-                    m.setAccessible(access);
+                    Class[] params = m.getParameterTypes();
+                    if(params[0] == Player.class && params[1] == String[].class) {
+                        boolean access = m.isAccessible();
+                        if (!access) m.setAccessible(true);
+                        m.invoke(m.getDeclaringClass().newInstance(), e.getPlayer(), args);
+                        m.setAccessible(access);
+                        e.setCancelled(true);
+                    }else{
+                        System.err.println("Invalid command creation for command '" + command.name() + "'!");
+                    }
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }
-                e.setCancelled(true);
                 break;
             }
         }
@@ -44,7 +50,6 @@ public class CommandHandler implements Listener{
         for(Method m : c.getDeclaredMethods()){
             if(m.isAnnotationPresent(Command.class)){
                 cmds.add(m);
-                break;
             }
         }
     }
