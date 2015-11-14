@@ -2,6 +2,7 @@ package me.servername.core.data;
 
 import me.servername.core.util.Config;
 import me.servername.core.util.Configurations;
+import me.servername.core.util.Matcher;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -53,10 +54,23 @@ public class UserDataHandler {
     }
 
     public UUID getUUID(String player){
+        Player target = Matcher.matchPlayer(player);
+        if(target != null) return target.getUniqueId();
         String s = conf.getString("data");
         String[] arr = s.split(";");
         for(String str : arr){
             if(str.split("=")[0].equalsIgnoreCase(player)) return UUID.fromString(str.split("=")[1]);
+        }
+        return null;
+    }
+
+    public String getName(UUID uuid){
+        Player target = Matcher.matchPlayer(uuid);
+        if(target != null) return target.getName();
+        String s = conf.getString("data");
+        String[] arr = s.split(";");
+        for(String str : arr){
+            if(str.split("=")[1].equalsIgnoreCase(uuid.toString())) return str.split("=")[0];
         }
         return null;
     }

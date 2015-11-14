@@ -15,7 +15,7 @@ public class UuidCommand {
         if(args.length >= 1){
             target = args[0];
         }
-        UUID uuid = (!p.getName().equals(target) ? UserDataHandler.getInstance().getUUID(target) : p.getUniqueId());
+        UUID uuid = UserDataHandler.getInstance().getUUID(target);
         if(uuid == null){
             p.sendMessage(Txt.from("&cThat player has never joined the server&8."));
             return;

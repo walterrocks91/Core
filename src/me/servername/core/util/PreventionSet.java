@@ -48,4 +48,8 @@ public class PreventionSet {
         this.canConsume = canConsume;
     }
 
+    public String toString(){
+        return ("{break="+canBreak+",place="+canPlace+",damage="+canDamage+",move="+canMove+",consume="+canConsume+"}");
+    }
+
 }

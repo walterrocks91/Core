@@ -7,6 +7,7 @@ import me.servername.core.command.builtin.TpCommand;
 import me.servername.core.command.builtin.UuidCommand;
 import me.servername.core.events.Join;
 import me.servername.core.util.Tps;
+import me.servername.core.wrappers.Users;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin{
@@ -22,6 +23,11 @@ public class Main extends JavaPlugin{
         CommandHandler.register(UuidCommand.class);
         CommandHandler.register(TpCommand.class);
         CommandHandler.register(MsgCommand.class);
+    }
+
+    public void onDisable(){
+        instance = null;
+        Users.getUsers().clear();
     }
 
     public static Main getInstance(){
