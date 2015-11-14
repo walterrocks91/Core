@@ -1,6 +1,7 @@
 package me.servername.core.wrappers;
 
 import me.servername.core.data.UserDataHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -25,7 +26,13 @@ public class Users {
 
     public static User getUserByID(UUID uuid){
         for(User u : users){
-            if(u.getUUID() == uuid) return u;
+            if(u.getUUID() == uuid){
+                if(Bukkit.getPlayer(UserDataHandler.getInstance().getName(u.getUUID())) == null){
+                    users.remove(u);
+                    return null;
+                }
+                return u;
+            }
         }
         return null;
     }

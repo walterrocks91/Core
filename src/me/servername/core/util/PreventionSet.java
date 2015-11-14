@@ -2,11 +2,16 @@ package me.servername.core.util;
 
 public class PreventionSet {
 
-    private boolean canBreak;
-    private boolean canPlace;
-    private boolean canDamage;
-    private boolean canMove;
-    private boolean canConsume;
+    private boolean canBreak = false;
+    private boolean canPlace = false;
+    private boolean canDamage = false;
+    private boolean canMove = false;
+    private boolean canConsume = false;
+    private boolean isInvincible = false;
+
+    public void setInvincible(boolean invincible){ this.isInvincible = invincible; }
+
+    public boolean isInvincible(){ return isInvincible; }
 
     public boolean canPlace() {
         return canPlace;
@@ -49,7 +54,7 @@ public class PreventionSet {
     }
 
     public String toString(){
-        return ("{break="+canBreak+",place="+canPlace+",damage="+canDamage+",move="+canMove+",consume="+canConsume+"}");
+        return ("{break="+canBreak+",place="+canPlace+",damage="+canDamage+",move="+canMove+",consume="+canConsume+",invincible="+isInvincible+"}");
     }
 
 }
